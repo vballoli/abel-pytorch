@@ -47,7 +47,7 @@ class ABEL(optim.lr_scheduler._LRScheduler):
                 for group in self.optimizer.param_groups]
 
     def _get_closed_form_lr(self):
-        if self.last_epoch > 2:
+        if self.last_epoch >= 2:
             assert self.current_norm is not None
             assert self.norm_t_1 is not None
             assert self.norm_t_2 is not None
