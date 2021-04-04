@@ -12,7 +12,7 @@ class ABEL(optim.lr_scheduler._LRScheduler):
     
     Args:
         optimizer (torch.optim.Optimizer): torch based optimizer
-        decay (float): LR decay(default=0.9)
+        decay (float): LR decay(default=0.1)
         last_epoch (int): Last executed epoch(default=-1)
         current_norm (torch.Tensor): current weight norm of model(default=None)
         norm_t_1 (torch.Tensor): t-1 weight norm of model(default=None)
@@ -20,7 +20,7 @@ class ABEL(optim.lr_scheduler._LRScheduler):
         verbose (bool): Verbosity(default=False)
     """
 
-    def __init__(self, optimizer, decay: float=0.9, last_epoch: int=-1, current_norm: torch.Tensor=None, norm_t_1: torch.Tensor=None, norm_t_2: torch.Tensor=None, verbose: bool=False):
+    def __init__(self, optimizer, decay: float=0.1, last_epoch: int=-1, current_norm: torch.Tensor=None, norm_t_1: torch.Tensor=None, norm_t_2: torch.Tensor=None, verbose: bool=False):
         self.decay = decay
 
         self.current_norm = current_norm
@@ -68,12 +68,10 @@ class ABEL(optim.lr_scheduler._LRScheduler):
 
     def step(self, epoch=None):
         if self.last_epoch >= 2:
-            print("Last 2")
             self.norm_t_2 = self.norm_t_1
             self.norm_t_1 = self.current_norm
             self.current_norm = get_weight_norm(self.optimizer.param_groups)
         elif self.last_epoch == 1:
-            print("Last 1")
             self.norm_t_1 = self.current_norm
             self.current_norm = get_weight_norm(self.optimizer.param_groups)
 
