@@ -2,13 +2,12 @@
 
 PyTorch implementation of `ABEL` LRScheduler based on weight-norm. If you find this work interesting, do consider starring the repository. If you use this in your research, don't forget to cite!
 
-[Original paper](https://arxiv.org/pdf/2103.12682v1.pdf)
+[Original paper](https://arxiv.org/pdf/2103.12682v1.pdf): `https://arxiv.org/pdf/2103.12682v1.pdf`
 
-[Docs](https://abel-pytorch.readthedocs.io/en/latest/)
+[Docs](https://abel-pytorch.readthedocs.io/en/latest/): `https://abel-pytorch.readthedocs.io/en/latest/`
 
 ## Installation
 
-WIP - not available on PyPi yet.
 ```
 pip install abel-pytorch
 ```
@@ -22,7 +21,7 @@ from abel import ABEL
 
 model = resnet18()
 optim = optim.SGD(model.parameters(), 1e-3)
-scheduler = ABEL(optim, 0.9)
+scheduler = ABEL(optim, 0.2)
 
 for i, (images, labels) in enumerate(trainloader):
   # forward pass...
