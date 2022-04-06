@@ -73,6 +73,7 @@ class ABEL(optim.lr_scheduler._LRScheduler):
             self.current_norm = get_weight_norm(self.optimizer.param_groups)
         elif self.last_epoch == 1:
             self.norm_t_1 = self.current_norm
+            self.norm_t_2 = self.current_norm
             self.current_norm = get_weight_norm(self.optimizer.param_groups)
 
         super(ABEL, self).step(epoch)
